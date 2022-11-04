@@ -1,6 +1,7 @@
 # Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 # flake8: noqa
 
+from .airport import *
 from .cemetery import *
 from .hair_salon import *
 from .home import *

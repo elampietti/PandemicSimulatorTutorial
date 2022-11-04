@@ -5,7 +5,7 @@
 from typing import Sequence, Type
 
 from ..environment import LocationID, PersonRoutine, HairSalon, Restaurant, Bar, \
-    GroceryStore, RetailStore, triggered_routine, weekend_routine, social_routine, mid_day_during_week_routine, \
+    GroceryStore, RetailStore, Airport, triggered_routine, weekend_routine, social_routine, mid_day_during_week_routine, \
     PersonRoutineAssignment, Person, Retired, Minor, Worker, Location
 
 __all__ = ['DefaultPersonRoutineAssignment']
@@ -22,7 +22,7 @@ class DefaultPersonRoutineAssignment(PersonRoutineAssignment):
 
     @property
     def required_location_types(self) -> Sequence[Type[Location]]:
-        return HairSalon, Restaurant, Bar, GroceryStore, RetailStore
+        return HairSalon, Restaurant, Bar, GroceryStore, RetailStore, Airport
 
     @staticmethod
     def get_minor_routines(home_id: LocationID, age: int) -> Sequence[PersonRoutine]:
@@ -41,6 +41,8 @@ class DefaultPersonRoutineAssignment(PersonRoutineAssignment):
             triggered_routine(None, GroceryStore, 7),
             triggered_routine(None, RetailStore, 7),
             triggered_routine(None, HairSalon, 30),
+            # For now lets say retired people travel once a month
+            triggered_routine(None, Airport, 30),
             weekend_routine(None, Restaurant, explore_probability=0.5),
             triggered_routine(home_id, Bar, 2, explore_probability=0.5),
             social_routine(home_id)
@@ -61,6 +63,8 @@ class DefaultPersonRoutineAssignment(PersonRoutineAssignment):
             triggered_routine(None, GroceryStore, 7),
             triggered_routine(None, RetailStore, 7),
             triggered_routine(None, HairSalon, 30),
+            # For now lets say workers also travel once a month
+            triggered_routine(None, Airport, 30),
             weekend_routine(None, Restaurant, explore_probability=0.5),
             triggered_routine(home_id, Bar, 3, explore_probability=0.5),
             social_routine(home_id)
