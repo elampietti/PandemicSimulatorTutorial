@@ -22,7 +22,7 @@ import pandemic_simulator as ps
 from pandemic_simulator.environment.interfaces import InfectionSummary
 from pandemic_simulator.environment.done import ORDone, DoneFunctionFactory, DoneFunctionType 
 from tianshou_utils import get_args, make_agent
-
+ 
 
 def train_dqn(args=get_args()):
     # init env
@@ -43,9 +43,12 @@ def train_dqn(args=get_args()):
     env = ps.env.PandemicGymEnv3Act.from_config(sim_config=sim_config, 
                  pandemic_regulations=ps.sh.austin_regulations,
                  done_fn=done_fn)
+
+    ps.env.PandemicGymEnv3Act.setup_viz(config=sim_config, gymviz=ps.viz.GymViz, simviz=ps.viz.SimViz)
+
     args.state_shape = env.observation_space.shape or env.observation_space.n
     args.action_shape = env.action_space.shape or env.action_space.n
-
+    
     # set random seed
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -90,6 +93,8 @@ def train_dqn(args=get_args()):
     # prefill buffer with some random data
     train_collector.collect(n_step=args.init_random_steps, random=True)
 
+
+
     # main training loop
     result = offpolicy_trainer(
         policy=policy,
@@ -122,5 +127,7 @@ if __name__ == '__main__':
     print("Final result: ")
     pprint.pprint(result)
 
+
+    
     elapsed = time.time() - start
     print("Train time: ", str(datetime.timedelta(seconds=elapsed)))
