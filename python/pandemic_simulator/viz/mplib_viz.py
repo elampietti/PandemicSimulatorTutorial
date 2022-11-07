@@ -8,6 +8,7 @@ from cycler import cycler
 from matplotlib import pyplot as plt
 from matplotlib.axes import Axes
 from matplotlib.ticker import MaxNLocator
+import time
 
 from .evaluation_plots import inf_colors
 from .pandemic_viz import PandemicViz
@@ -167,7 +168,11 @@ class BaseMatplotLibViz(PandemicViz):
             plot_fn(ax, **kwargs)
             self.annotate_plot(ax, plot_ref_labels[ax_i])
         plt.tight_layout()
-        plt.show()
+
+        # Change "baseline" to whichever experiment you're running
+        plt.savefig('./plots/baseline_{}.png'.format(time.time()))
+
+        # plt.show()
 
 
 class SimViz(BaseMatplotLibViz):
