@@ -1,7 +1,7 @@
 # Confidential, Copyright 2020, Sony Corporation of America, All rights reserved.
 from typing import List
 
-from ..environment import PandemicRegulation, DEFAULT, Risk, Office, School, HairSalon, RetailStore, Restaurant, Bar
+from ..environment import PandemicRegulation, DEFAULT, Risk, Office, School, HairSalon, RetailStore, Restaurant, Bar, Airport
 
 __all__ = ['austin_regulations', 'italian_regulations', 'swedish_regulations']
 
@@ -18,6 +18,7 @@ austin_regulations: List[PandemicRegulation] = [
                            RetailStore: {'lock': False},
                            Bar: {'lock': False},
                            Restaurant: {'lock': False},
+                           Airport: {'lock': False},
                        },
                        stage=0),
     PandemicRegulation(stay_home_if_sick=True,
@@ -32,6 +33,7 @@ austin_regulations: List[PandemicRegulation] = [
                            RetailStore: {'lock': False},
                            Restaurant: {'lock': False},
                            Bar: {'lock': False},
+                           Airport: {'lock': False},
                        },
                        stage=1),
     PandemicRegulation(stay_home_if_sick=True,
@@ -46,6 +48,7 @@ austin_regulations: List[PandemicRegulation] = [
                            RetailStore: {'lock': False},
                            Restaurant: {'lock': False},
                            Bar: {'lock': False},
+                           Airport: {'lock': False},
                        },
                        stage=2),
     PandemicRegulation(stay_home_if_sick=True,
@@ -60,6 +63,7 @@ austin_regulations: List[PandemicRegulation] = [
                            RetailStore: {'lock': False},
                            Restaurant: {'lock': True},
                            Bar: {'lock': True},
+                           Airport: {'lock': False},
                        },
                        stage=3),
     PandemicRegulation(stay_home_if_sick=True,
@@ -74,6 +78,7 @@ austin_regulations: List[PandemicRegulation] = [
                            RetailStore: {'lock': True},
                            Restaurant: {'lock': True},
                            Bar: {'lock': True},
+                           Airport: {'lock': False},
                        },
                        stage=4)
 ]
@@ -135,6 +140,7 @@ italian_regulations: List[PandemicRegulation] = [
                            RetailStore: {'lock': False},
                            Bar: {'lock': False},
                            Restaurant: {'lock': False},
+                           Airport: {'lock': False},
                        },
                        stage=0),
     PandemicRegulation(stay_home_if_sick=True,
@@ -148,7 +154,7 @@ italian_regulations: List[PandemicRegulation] = [
                            RetailStore: {'lock': False},
                            Restaurant: {'lock': False},
                            Bar: {'lock': False},
-
+                           Airport: {'lock': False},
                        },
                        stage=1),
     PandemicRegulation(stay_home_if_sick=True,
@@ -162,6 +168,7 @@ italian_regulations: List[PandemicRegulation] = [
                            RetailStore: {'lock': False},
                            Restaurant: {'lock': False},
                            Bar: {'lock': False},
+                           Airport: {'lock': False},
                        },
                        stage=2),
     PandemicRegulation(stay_home_if_sick=True,
@@ -176,6 +183,7 @@ italian_regulations: List[PandemicRegulation] = [
                            RetailStore: {'lock': True},
                            Restaurant: {'lock': True},
                            Bar: {'lock': True},
+                           Airport: {'lock': False},
                        },
                        stage=3),
     PandemicRegulation(stay_home_if_sick=True,
@@ -190,6 +198,7 @@ italian_regulations: List[PandemicRegulation] = [
                            RetailStore: {'lock': True},
                            Restaurant: {'lock': True},
                            Bar: {'lock': True},
+                           Airport: {'lock': False},
                        },
                        stage=4)
 ]
@@ -221,6 +230,7 @@ swedish_regulations: List[PandemicRegulation] = [
                            RetailStore: {'lock': False},
                            Bar: {'lock': False},
                            Restaurant: {'lock': False},
+                           Airport: {'lock': False},
                        },
                        stage=0),
     PandemicRegulation(stay_home_if_sick=True,

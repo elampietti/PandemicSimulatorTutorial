@@ -170,7 +170,10 @@ class BaseMatplotLibViz(PandemicViz):
         plt.tight_layout()
 
         # Change "baseline" to whichever experiment you're running
-        plt.savefig('./plots/baseline_{}.png'.format(time.time()))
+        plt.savefig('./plots/baseline_airport_{}.png'.format(time.time()))
+        plt.clf()
+        plt.cla()
+        plt.close('all')
 
         # plt.show()
 

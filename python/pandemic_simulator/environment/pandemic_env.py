@@ -152,8 +152,8 @@ class PandemicGymEnv(gym.Env):
         self._last_reward = self._reward_fn.calculate_reward(prev_obs, action, obs) if self._reward_fn else 0.
         done = self._done_fn.calculate_done(obs, action) if self._done_fn else False
         self._last_observation = obs
-        print("first obs: ", type(self._last_observation))
-        print("first obs value: ",self._last_observation)
+        # print("first obs: ", type(self._last_observation))
+        # print("first obs value: ",self._last_observation)
         return self._last_observation, self._last_reward, done, {}
 
     def reset(self) -> PandemicObservation:
@@ -190,7 +190,7 @@ class PandemicGymEnv3Act(gym.ActionWrapper):
         self.observation_space = gym.spaces.MultiDiscrete(np.ones(shape=(1, 1, 5+1+1+1)), 
                                                           dtype=np.float32)
         # note that the action space for the learner is {0, 1, 2}; different than the action space of the PandemicGymEnv
-        self.action_space = gym.spaces.Discrete(5)
+        self.action_space = gym.spaces.Discrete(3)
 
     @classmethod
     def setup_viz(self,config, gymviz, simviz):
@@ -258,10 +258,10 @@ class PandemicGymEnv3Act(gym.ActionWrapper):
         '''Remap action back to stages
         '''
         assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
-        #action -= 1 # map actions from range {0, 1, 2, 3, 4} into {-1, 0, 1}
-        #remapped_action = int(min(4, max(0, self.env._last_observation.stage[-1, 0, 0] + action)))
-        print("Stage is: ", action)
-        return action
+        action -= 1 # map actions from range {0, 1, 2, 3, 4} into {-1, 0, 1}
+        remapped_action = int(min(4, max(0, self.env._last_observation.stage[-1, 0, 0] + action)))
+        print("Stage is: ", remapped_action)
+        return remapped_action
     
     def reset(self, flatten_obs=True):
         self.current_days = 0
